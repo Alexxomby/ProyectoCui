@@ -1,0 +1,40 @@
+
+const express = require('express')
+
+const dotenv = require('dotenv')
+
+const cookieParser = require('cookie-parser')
+
+const app = express()
+//seteado de motoro de poatnillas
+app.set('view engine', 'ejs');
+
+//seteamos la carpeta public para archivos estáticos
+
+app.use(express.static('public'));
+
+//pa que procede datos
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
+//seteamos las variables de entrono
+
+dotenv.config({ path: './env/.env' })
+
+//setep de ;as galletitas
+//app.use(cookieParser)
+
+
+//llamar al router
+app.use('/', require('./routes/router'))
+
+//app.get('/', (req, res) => {
+    //res.send('gelouda ')
+//}) nos manejaremos desde el router
+
+
+app.listen(3999, () => {
+    console.log('Hola nigeriano')
+    console.log('server running en http://localhost:3999' )
+
+})
